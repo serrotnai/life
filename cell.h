@@ -4,13 +4,15 @@
 #include <cstddef>
 #include <functional>
 
+// Class: Cell
+// Represents a cell in an instance of Conway's Game of Life.
+
 class Cell
 {
 public:
     Cell(long long x, long long y);
     long long getX() const; // Returns x-coordinate of cell
     long long getY() const; // Returns y-coordinate of cell
-
     mutable int m_count; // Number of live neighbors when calculating next generation
 
 private:

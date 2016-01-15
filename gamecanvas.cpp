@@ -6,15 +6,15 @@
 #include <QFile>
 #include <QTextStream>
 
-#include <QtDebug>
-
 GameCanvas::GameCanvas(QWidget *parent) :
     QWidget(parent),
     m_originX(0),
     m_originY(0),
-    m_worldSize(50)
+    m_worldSize(50),
+    m_animSpeed(200),
+    m_timer(new QTimer(this))
 {
-
+    connect(&m_timer, SIGNAL(timeout()), this, SLOT(tick()));
 }
 
 void GameCanvas::loadFile(QString filename)
@@ -53,6 +53,16 @@ long long GameCanvas::getOriginY()
     return m_originY;
 }
 
+void GameCanvas::animate()
+{
+    m_timer.start(m_animSpeed);
+}
+
+void GameCanvas::pause()
+{
+    m_timer.stop();
+}
+
 void GameCanvas::tick()
 {
     std::unordered_set<Cell> candidates;
@@ -84,6 +94,22 @@ void GameCanvas::tick()
         }
     }
     update();
+}
+
+void GameCanvas::setSize(int size)
+{
+    m_worldSize = size;
+    update();
+}
+
+void GameCanvas::setSpeed(int speed)
+{
+    m_animSpeed = speed;
+
+    if (m_timer.isActive()) {
+        pause();
+        animate(); // Restart timer with new speed
+    }
 }
 
 void GameCanvas::addCell(long long x, long long y)

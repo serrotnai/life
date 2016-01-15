@@ -21,6 +21,8 @@ public slots:
     void tickMain();
     void loadFileMain();
     void setOriginMain();
+    void animateMain();
+    void pauseMain();
 
 private:
     Ui::MainWindow *ui;
