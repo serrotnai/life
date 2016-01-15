@@ -18,11 +18,8 @@ public:
 
 public slots:
     // Functions called in response to clicked buttons
-    void tickMain();
     void loadFileMain();
     void setOriginMain();
-    void animateMain();
-    void pauseMain();
 
 private:
     Ui::MainWindow *ui;

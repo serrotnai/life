@@ -23,7 +23,6 @@ private:
 /* Returns true if two cells have the same x and y coordinates */
 bool operator==(const Cell& c1, const Cell& c2);
 
-
 /* Custom hash function for Cell class to be used by unordered_set. */
 namespace std
 {

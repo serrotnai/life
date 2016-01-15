@@ -9,11 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Set up signals and slots
-    connect(ui->tickButton, SIGNAL(clicked()), this, SLOT(tickMain()));
     connect(ui->loadFileButton, SIGNAL(clicked()), this, SLOT(loadFileMain()));
     connect(ui->setOriginButton, SIGNAL(clicked()), this, SLOT(setOriginMain()));
-    connect(ui->animateButton, SIGNAL(clicked()), this, SLOT(animateMain()));
-    connect(ui->pauseButton, SIGNAL(clicked()), this, SLOT(pauseMain()));
+    connect(ui->tickButton, SIGNAL(clicked()), canvas, SLOT(tick()));
+    connect(ui->animateButton, SIGNAL(clicked()), canvas, SLOT(animate()));
+    connect(ui->pauseButton, SIGNAL(clicked()), canvas, SLOT(pause()));
     connect(ui->sizeSlider, SIGNAL(valueChanged(int)), canvas, SLOT(setSize(int)));
     connect(ui->speedSlider, SIGNAL(valueChanged(int)), canvas, SLOT(setSpeed(int)));
 
@@ -28,11 +28,6 @@ MainWindow::~MainWindow()
     delete canvas;
 }
 
-void MainWindow::tickMain()
-{
-    canvas->tick();
-}
-
 void MainWindow::loadFileMain()
 {
     QString filename = "res/" + ui->fileNameEdit->text();
@@ -44,14 +39,4 @@ void MainWindow::setOriginMain()
     long long x = ui->xOriginEdit->text().toLongLong();
     long long y = ui->yOriginEdit->text().toLongLong();
     canvas->setOrigin(x, y);
-}
-
-void MainWindow::animateMain()
-{
-    canvas->animate();
-}
-
-void MainWindow::pauseMain()
-{
-    canvas->pause();
 }

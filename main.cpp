@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "cell.h"
 #include <QApplication>
 #include <QtGui>
 

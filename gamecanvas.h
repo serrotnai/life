@@ -27,13 +27,12 @@ public:
     long long getOriginX(); // Returns the x-coordinate of the origin
     long long getOriginY(); // Returns the y-coordinate of the origi.
 
-    void animate(); // Animates the game canvas until the user presses the pause button
-    void pause(); // Pauses the game canvas if it is currently being animated
-
 public slots:
     void tick(); // Steps the game canvas forward one generation.
-    void setSize(int size);
-    void setSpeed(int speed);
+    void animate(); // Animates the game canvas until the user presses the pause button
+    void pause(); // Pauses the game canvas if it is currently being animated
+    void setSize(int size); // Sets size of the game canvas
+    void setSpeed(int speed); // Sets speed (in milliseconds between ticks)
 
 private:
     void addCell(long long x, long long y); // Adds a cell with the given coordinates.

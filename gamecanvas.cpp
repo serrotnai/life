@@ -53,16 +53,6 @@ long long GameCanvas::getOriginY()
     return m_originY;
 }
 
-void GameCanvas::animate()
-{
-    m_timer.start(m_animSpeed);
-}
-
-void GameCanvas::pause()
-{
-    m_timer.stop();
-}
-
 void GameCanvas::tick()
 {
     std::unordered_set<Cell> candidates;
@@ -96,6 +86,16 @@ void GameCanvas::tick()
     update();
 }
 
+void GameCanvas::animate()
+{
+    m_timer.start(m_animSpeed);
+}
+
+void GameCanvas::pause()
+{
+    m_timer.stop();
+}
+
 void GameCanvas::setSize(int size)
 {
     m_worldSize = size;
@@ -108,7 +108,7 @@ void GameCanvas::setSpeed(int speed)
 
     if (m_timer.isActive()) {
         pause();
-        animate(); // Restart timer with new speed
+        animate(); // Restart with new speed if currently animating
     }
 }
 
